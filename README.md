@@ -17,8 +17,17 @@ Este proyecto es una implementación de un tema libre para la creación de un CR
 
 ## Contenido:
 
-Este proyecto se basa principalmente en un organizador de información de eventos.
+Este proyecto se basa principalmente en un organizador de información de eventos. Entrando en detalle los datos que se van a leer, actualizar, eliminar, crear van a ser los siguientes:
 
+Eventos  | tipo de variable
+-------- | ----------------
+Nombre | String
+Fecha | Date
+Ubicación | String
+Descripción general | String
+Costo de entrada | Number
+Asistencia esperada | Number
+Tiene presupuesto | Boolean
 
 ## Proceso de como se creó el proyecto
 
