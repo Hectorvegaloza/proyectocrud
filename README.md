@@ -13,13 +13,19 @@ Este proyecto es una implementación de un tema libre para la creación de un CR
 
 ## Realizado por:
 
-**Héctor Javier Vega Lozano**, Ingeniero electrónico, próximamente desarrollador Full Stack, entusiasta por realizar cosas que sean funcionales o de utilidad.
+**Héctor Javier Vega Lozano**, Ingeniero electrónico, desarrollador Full Stack, entusiasta por realizar cosas que sean funcionales o de utilidad utilizando herramientas de Desarrollo Web.
+
+## Contenido:
+
+Este proyecto se basa principalmente en un organizador de información de eventos.
+
 
 ## Proceso de como se creó el proyecto
 
 Para iniciar el primer paso que se debe realizar es crear un repositorio en GitHub.
 
-`asd`
++ 
+
 
 
 
