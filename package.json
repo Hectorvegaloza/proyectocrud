@@ -1,0 +1,27 @@
+{
+  "name": "proyectocrud",
+  "version": "1.0.0",
+  "description": "Protecto de organizador de eventos",
+  "main": "index.js",
+  "scripts": {
+    "test": "iniciando",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hectorvegaloza/proyectocrud.git"
+  },
+  "keywords": [
+    "eventos",
+    "organización",
+    "mejora",
+    "de",
+    "procesos"
+  ],
+  "author": "Héctor Javier Vega Lozano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hectorvegaloza/proyectocrud/issues"
+  },
+  "homepage": "https://github.com/Hectorvegaloza/proyectocrud#readme"
+}
