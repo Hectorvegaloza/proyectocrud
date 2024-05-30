@@ -19,7 +19,7 @@ Este proyecto es una implementación de un tema libre para la creación de un CR
 
 Para iniciar el primer paso que se debe realizar es crear un repositorio en GitHub.
 
-´asd´
+`asd`
 
 
 
