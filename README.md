@@ -46,16 +46,26 @@ Inicialmente se requiere inicializar con Node, para esto se va usar `npm` que si
 
 Despues de este comando este va preguntar lo siguiente:
 
->Press ^C at any time to quit.
+>Press ^C at any time to quit.  
+
 >package name: (proyectocrud)
+
 >version: (1.0.0)
+
 >description: Protecto de organizador de eventos
+
 >entry point: (index.js)
+
 >test command: iniciando
+
 >git repository: https://github.com/Hectorvegaloza/proyectocrud.git
+
 >keywords: eventos, organización, mejora de procesos
+
 >author: Héctor Javier Vega Lozano
+
 >license: (ISC)
+
 
 Nota: Si desea evitar estas preguntas el comando debe ser el siguiente `npm init --yes`
 
