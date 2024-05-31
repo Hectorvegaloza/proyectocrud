@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "iniciando",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,18 @@
   ],
   "author": "Héctor Javier Vega Lozano",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Hectorvegaloza/proyectocrud/issues"
   },
-  "homepage": "https://github.com/Hectorvegaloza/proyectocrud#readme"
+  "homepage": "https://github.com/Hectorvegaloza/proyectocrud#readme",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.2"
+  }
 }
