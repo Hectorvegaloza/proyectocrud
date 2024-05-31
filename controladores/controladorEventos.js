@@ -1,21 +1,21 @@
-import ModeloUsuario from "../modelos/modeloUsuario.js";
+import ModeloEvento from "../modelos/modeloEventos.js";
 
 const ControladorEventos = {
   
-    crearUsuario: async (solicitud, respuesta) => {
+    crearEvento: async (solicitud, respuesta) => {
       try{
 
-        const nuevoUsuario = new ModeloUsuario(solicitud.body);
+        const nuevoEvento = new ModeloEvento(solicitud.body);
 
-         console.log("solicitud:", solicitud.body); 
-         const usuarioCreado = await nuevoUsuario.save();
-         console.log(usuarioCreado);
+        /*  console.log("solicitud:", solicitud.body);  */
+         const eventoCreado = await nuevoEvento.save();
+        /*  console.log(usuarioCreado); */
 
-        if (usuarioCreado._id){
+        if ( eventoCreado._id){
           respuesta.json({
             resultado: "Bien!",
-            mensaje: "Usuario Creado!",
-            id: usuarioCreado._id
+            mensaje: "Evento Creado!",
+            id:  eventoCreado._id
           });
         }
         
@@ -25,22 +25,18 @@ const ControladorEventos = {
       }
       },
 
-      leerUsuario: async (solicitud, respuesta) => {
+      leerEvento: async (solicitud, respuesta) => {
         try{
 
-          const usuarioEncontrado = await ModeloUsuario.findById(solicitud.params.id);//para leer un usuario
+          const eventoEncontrado = await ModeloEvento.findById(solicitud.params.id);//para leer un usuario
           /* console.log(usuarioEncontrado); */
-          const nuevoUsuario = new ModeloUsuario(solicitud.body);
-          /* console.log("solicitud:", solicitud.body);  */
-          const usuarioCreado = await nuevoUsuario.save();
-          console.log(usuarioCreado);
 
-         if (usuarioCreado._id){
+         if (eventoEncontrado._id){
            respuesta.json({
              resultado: "Bien!",
-             mensaje: "Usuario Creado!",
-             id: usuarioCreado._id,
-             datos: usuarioEncontrado 
+             mensaje: "solo un evento!",
+             id: eventoEncontrado._id,
+             datos: eventoEncontrado 
            });
          }
 
@@ -51,14 +47,14 @@ const ControladorEventos = {
 
       },
       
-      leerUsuarios: async (solicitud, respuesta) => {
+      leerEventos: async (solicitud, respuesta) => {
         try{
-          const TodosLosUsuarios = await ModeloUsuario.find();
-          console.log(TodosLosUsuarios);
+          const TodosLoseventos = await ModeloEvento.find();
+          console.log(TodosLoseventos);
           respuesta.json({
             resultado: "bien!!",
-            mensaje: "Usuarios leidos",
-            datos:TodosLosUsuarios
+            mensaje: "eventos leidos",
+            datos:TodosLoseventos
           })
 
         
@@ -70,18 +66,18 @@ const ControladorEventos = {
       },
 
 
-      actualizarUsuario: async (solicitud, respuesta) => {
+      actualizarEvento: async (solicitud, respuesta) => {
         try{
 
           console.log(solicitud.params.id);
           console.log("solicitud:", solicitud.body); 
           
-          const usuarioactualizado = await ModeloUsuario.findByIdAndUpdate(solicitud.params.id,solicitud.body);
+          const usuarioactualizado = await ModeloEvento.findByIdAndUpdate(solicitud.params.id,solicitud.body);
 
           if(usuarioactualizado._id){
             respuesta.json({
               resultado: "bien!!",
-              mensaje: "Usuarios modificados",
+              mensaje: "Eventos modificados",
               datos:usuarioactualizado
             })
           }
@@ -95,10 +91,10 @@ const ControladorEventos = {
         }
       },
 
-      eliminarUsuario: async(solicitud, respuesta) => {
+      eliminarEvento: async(solicitud, respuesta) => {
         try{
 
-          const usuarioEliminado = await ModeloUsuario.findByIdAndDelete(solicitud.params.id);//para leer un usuario
+          const usuarioEliminado = await ModeloEvento.findByIdAndDelete(solicitud.params.id);//para leer un usuario
   
 
          if (usuarioEliminado._id){
