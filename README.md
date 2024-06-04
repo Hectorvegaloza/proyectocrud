@@ -11,9 +11,11 @@ Este proyecto es una implementación de un tema libre para la creación de un CR
  + Rutas
 
 
-## Realizado por:
+## Desarrollador
 
-**Héctor Javier Vega Lozano**, Ingeniero electrónico, desarrollador Full Stack, entusiasta por realizar cosas que sean funcionales o de utilidad utilizando herramientas de Desarrollo Web.
+**Héctor Javier Vega Lozano**
+
+&copy;
 
 ## Contenido:
 
@@ -157,13 +159,180 @@ MONGODB_ATLAS_URI="link dada por atlas"
 ## Creación de enrutamiento
 
 
+### Rutas
 
+se deben de crear las rutas donde directamente este relacionado los controladores con las direcciones del servidor local
+
+
+```javascript
+import ControladorEventos from "../controladores/controladorEventos.js"; 
+
+const enrutadorEventos = Router();
+
+
+enrutadorEventos.post('/:id', ControladorEventos.crearEvento);
+enrutadorEventos.get('/:id', ControladorEventos.leerEvento);
+enrutadorEventos.get('/', ControladorEventos.leerEventos);
+enrutadorEventos.put('/:id', ControladorEventos.actualizarEvento);
+enrutadorEventos.delete('/:id', ControladorEventos.eliminarEvento);
+
+export default enrutadorEventos;
+```
+
+### Controladores
+
+Estos basicamente son los que reciben la información la procesan en tal caso de que no este correcta la comunicación manda errores
+
+
+```javascript
+import ModeloEvento from "../modelos/modeloEventos.js";
+
+const ControladorEventos = {
+  
+    crearEvento: async (solicitud, respuesta) => {
+      try{
+
+        const nuevoEvento = new ModeloEvento(solicitud.body);
+
+        /*  console.log("solicitud:", solicitud.body);  */
+         const eventoCreado = await nuevoEvento.save();
+        /*  console.log(usuarioCreado); */
+
+        if ( eventoCreado._id){
+          respuesta.json({
+            resultado: "Bien!",
+            mensaje: "Evento Creado!",
+            id:  eventoCreado._id
+          });
+        }
+        
+      }catch(error){
+        console.log("error",error);
+        respuesta.json({error: true, mensaje: "ocurrió un error al enviar mensaje"});
+      }
+      },
+
+      leerEvento: async (solicitud, respuesta) => {
+        try{
+
+          const eventoEncontrado = await ModeloEvento.findById(solicitud.params.id);//para leer un usuario
+          /* console.log(usuarioEncontrado); */
+
+         if (eventoEncontrado._id){
+           respuesta.json({
+             resultado: "Bien!",
+             mensaje: "solo un evento!",
+             id: eventoEncontrado._id,
+             datos: eventoEncontrado 
+           });
+         }
+
+        }catch(error){
+          console.log("error",error);
+          respuesta.json({error: true, mensaje: "ocurrió un error al leer usuario"});
+        }
+
+      },
+      
+      leerEventos: async (solicitud, respuesta) => {
+        try{
+          const TodosLoseventos = await ModeloEvento.find();
+          console.log(TodosLoseventos);
+          respuesta.json({
+            resultado: "bien!!",
+            mensaje: "eventos leidos",
+            datos:TodosLoseventos
+          })
+
+        
+        }catch(error){
+          console.log("error",error);
+          respuesta.json({error: true, mensaje: "ocurrió un error al leer los usuarios"});
+        }
+
+      },
+
+
+      actualizarEvento: async (solicitud, respuesta) => {
+        try{
+
+          console.log(solicitud.params.id);
+          console.log("solicitud:", solicitud.body); 
+          
+          const usuarioactualizado = await ModeloEvento.findByIdAndUpdate(solicitud.params.id,solicitud.body);
+
+          if(usuarioactualizado._id){
+            respuesta.json({
+              resultado: "bien!!",
+              mensaje: "Eventos modificados",
+              datos:usuarioactualizado
+            })
+          }
+      
+
+
+
+        }catch(error){
+          console.log("error",error);
+          respuesta.json({error: true, mensaje: "ocurrió un error actualizar usuario"});
+        }
+      },
+
+      eliminarEvento: async(solicitud, respuesta) => {
+        try{
+
+          const usuarioEliminado = await ModeloEvento.findByIdAndDelete(solicitud.params.id);//para leer un usuario
+  
+
+         if (usuarioEliminado._id){
+           respuesta.json({
+             resultado: "Bien!",
+             mensaje: "Usuario eliminado!",
+             datos: usuarioEliminado
+           });
+         }
+
+        }catch(error){
+          console.log("error",error);
+          respuesta.json({error: true, mensaje: "ocurrió un error al eliminar usuario"});
+        }
+
+      }
+}
+
+export default ControladorEventos;
+```
+
+### Modelos
+
+Estos basicamente son la forma de como se van a recibir o enviar los datos
+
+```javascript
+import { Schema } from "mongoose"; // es lo que permite decirme cual es la estructura del documento
+import { model } from "mongoose";
+
+// vamos a crear un esquema
+
+const esquemaEvento = new Schema( // estoy creando un esquema estrcuctura de como ingresan los datos
+    {
+        NombreEvento: {type: String, require: true},
+        fecha:{type: Date, require: true},
+        ubicacion: {type: String, require: true},
+        descripcion: {type: String, require: true},
+        costo: {type: Number, require: true},
+        asistencia: {type: String, require: true},
+        presupuesto:  {type: Boolean},
+});
+
+
+export default model("Evento", esquemaEvento); // Lo exporto este es el modelo 
+```
 
 
 
 ### Creación conexión BD
-
-Se crea un archivo y se coloca lo siguiente 
+ 
+Se crea un archivo y se llama la función creada en .env para probar la comunicación entre las base de datos y el programa
 
 >import mongoose, { Mongoose } from "mongoose";
 
@@ -174,4 +343,6 @@ Se crea un archivo y se coloca lo siguiente
 >}).catch((error) => {
 >    console.log("Ocurrio un error y no se conecto a la base de datos");
 >}); //recibe mi conexion donde esta la base de datos nos va retornar una promesa
+
+### Pruebas
 
